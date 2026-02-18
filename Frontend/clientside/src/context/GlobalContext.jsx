@@ -18,9 +18,14 @@ const GlobalContextProvider = ({ children }) => {
         setUser_Id(auth?.user?._id);
     }, [user_id]);
 
-    const getIncomes = async () => {
+    const getIncomes = async (params = {}) => {
         try {
-            const { data } = await axios.get(`${import.meta.env.VITE_REACT_APP_API}/api/v1/get-incomes?user_id=${user_id}`);
+            const { category, sort } = params;
+            let url = `${import.meta.env.VITE_REACT_APP_API}/api/v1/get-incomes?user_id=${user_id}`;
+            if (category) url += `&category=${category}`;
+            if (sort) url += `&sort=${sort}`;
+
+            const { data } = await axios.get(url);
             if (data?.success) {
                 setIncomes(data.allIncomes);
                 //toast.success(data.message);
