@@ -1,81 +1,97 @@
 import { useRef } from "react";
 import Layout from "../../components/Layout/Layout";
 import 'react-toastify/dist/ReactToastify.css';
-import {toast, ToastContainer} from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import axios from 'axios'
 import './register.css'
 import { useNavigate } from "react-router-dom";
-const Register=()=>{
-    const navigate=useNavigate();
-    const name=useRef();
-    const email=useRef();
-    const phone=useRef();
-    const password=useRef();
-    const answer=useRef();
-    const address=useRef();
+const Register = () => {
+  const navigate = useNavigate();
+  const name = useRef();
+  const email = useRef();
+  const phone = useRef();
+  const password = useRef();
+  const answer = useRef();
+  const address = useRef();
 
-    const handleOnSubmit=async (event)=>{
-        event.preventDefault();
-        try{
-            const {data}=await axios.post(`${import.meta.env.VITE_REACT_APP_API}/api/v1/register-user`,
-               {name:name.current.value,
-                email:email.current.value,
-                phone:phone.current.value,
-                password:password.current.value,
-                answer:answer.current.value,
-                address:address.current.value});
-                if(data?.success){
-                    toast.success("Register Successfully");
-                    navigate("/login");
-                }
-                else{
-                    toast.error(data?.message);
-                }
-        }
-        catch (error){
-            console.log(error);
-            if (error.response && error.response.data && error.response.data.message) {
-            toast.error(error.response.data.message);
-            } else {
-              toast.error("Something went wrong");
-             }
-        }
+  const handleOnSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await axios.post(`${import.meta.env.VITE_REACT_APP_API}/api/v1/register-user`,
+        {
+          name: name.current.value,
+          email: email.current.value,
+          phone: phone.current.value,
+          password: password.current.value,
+          answer: answer.current.value,
+          address: address.current.value
+        });
+      if (data?.success) {
+        toast.success("Register Successfully");
+        navigate("/login");
+      }
+      else {
+        toast.error(data?.message);
+      }
     }
+    catch (error) {
+      console.log(error);
+      if (error.response && error.response.data && error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Something went wrong");
+      }
+    }
+  }
 
-return(
- <Layout>
-  <form className="form-box" autoComplete="off" onSubmit={handleOnSubmit}>
-  <div className="d-flex flex-column form-container">
-    <h1 className="form-heading">Hello, Register Now!</h1>
-    <h4 className="form-subheading">We are happy to have you with us</h4>
-    <div className="mb-3">
-      <input type="text" ref={name} autoComplete="off" className="form-control input-field" id="exampleInputName1" placeholder="Enter your Name" aria-describedby="emailHelp" required/>
-    </div>
-    <div className="mb-3">
-      <input type="email" ref={email} autoComplete="off" className="form-control input-field" id="exampleInputEmail1" placeholder="Enter your Email" aria-describedby="emailHelp" required/>
-    </div>
-    <div className="mb-3">
-      <input type="text" ref={phone} autoComplete="off" className="form-control input-field" id="exampleInputPhone1" placeholder="Enter your Phone Number" aria-describedby="emailHelp" required/>
-    </div>
-    <div className="mb-3">
-      <input type="password" ref={password} autoComplete="off" className="form-control input-field" id="exampleInputPassword1" placeholder="Enter Password" required/>
-    </div>
-    <div className="mb-3">
-      <input type="text" ref={answer} autoComplete="off" className="form-control input-field" id="exampleInputAnswer1" placeholder="Enter your favourite Sport" aria-describedby="emailHelp" required/>
-    </div>
-    <div className="mb-3">
-      <input type="text" ref={address} autoComplete="off" className="form-control input-field" id="exampleInputAddress1" placeholder="Enter your Address" aria-describedby="emailHelp" required/>
-    </div>
-    <div className="mb-3 form-check">
-       <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-      <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
-    </div>
-    <button type="submit" className="btn submit-button">Submit</button>
-  </div>
- </form>
- {/* <ToastContainer/> */}
-</Layout>
-);
+  return (
+    <Layout>
+      <div className="register-wrapper">
+        <div className="register-container">
+          <h2>Create Account</h2>
+          <p className="auth-footer" style={{ marginTop: '-1rem', marginBottom: '1rem' }}>We are happy to have you with us</p>
+
+          <form className="register-form" autoComplete="off" onSubmit={handleOnSubmit}>
+            <div className="form-group">
+              <label htmlFor="name">Full Name</label>
+              <input type="text" ref={name} id="name" placeholder="Enter your Name" required />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="email">Email Address</label>
+              <input type="email" ref={email} id="email" placeholder="Enter your Email" required />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="phone">Phone Number</label>
+              <input type="text" ref={phone} id="phone" placeholder="Enter your Phone Number" required />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input type="password" ref={password} id="password" placeholder="Min 6 characters" required />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="answer">Security Answer (Favourite Sport)</label>
+              <input type="text" ref={answer} id="answer" placeholder="Your favourite Sport" required />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="address">Address</label>
+              <input type="text" ref={address} id="address" placeholder="Enter your Address" required />
+            </div>
+
+            <button type="submit" className="auth-btn">Register</button>
+
+            <div className="auth-footer">
+              Already have an account? <a href="/login" className="auth-link">Login</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </Layout>
+  );
 }
 
 export default Register;

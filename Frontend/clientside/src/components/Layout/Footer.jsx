@@ -1,15 +1,18 @@
 import { Link } from "react-router-dom";
 
 
-const Footer=()=>{
-    return(
-    <div className="footer">
-          <h4 className="mb-0">All right are reserved ©</h4>
-        <div className="footer-link-container">
-            <Link to='/aboutus' className="footer-link">About</Link>
-            <Link to='/contactus' className="footer-link">Contact</Link>
-         </div>
-    </div>
+const Footer = () => {
+    return (
+        <footer className="footer" style={{ borderTop: '1px solid var(--border-color)', background: 'white', padding: '2rem 1rem' }}>
+            <div className="container text-center">
+                <h5 style={{ fontWeight: 600, color: 'var(--text-main)', marginBottom: '1rem' }}>Expense Tracker</h5>
+                <div className="footer-link-container d-flex justify-content-center gap-4 mb-3">
+                    <Link to='/aboutus' style={{ textDecoration: 'none', color: 'var(--text-muted)', fontWeight: 500 }}>About</Link>
+                    <Link to='/contactus' style={{ textDecoration: 'none', color: 'var(--text-muted)', fontWeight: 500 }}>Contact</Link>
+                </div>
+                <p className="mb-0" style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>© {new Date().getFullYear()} All rights reserved</p>
+            </div>
+        </footer>
     );
 }
 

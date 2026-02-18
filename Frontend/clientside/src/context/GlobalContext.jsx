@@ -14,11 +14,14 @@ const GlobalContextProvider = ({ children }) => {
     const [user_id, setUser_Id] = useState("");
 
 
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
         setUser_Id(auth?.user?._id);
     }, [user_id]);
 
     const getIncomes = async (params = {}) => {
+        setLoading(true);
         try {
             const { category, sort } = params;
             let url = `${import.meta.env.VITE_REACT_APP_API}/api/v1/get-incomes?user_id=${user_id}`;
@@ -33,6 +36,8 @@ const GlobalContextProvider = ({ children }) => {
         }
         catch (error) {
             console.log(error);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -74,6 +79,7 @@ const GlobalContextProvider = ({ children }) => {
     }
 
     const getExpenses = async (params = {}) => {
+        setLoading(true);
         try {
             const { category, sort } = params;
             let url = `${import.meta.env.VITE_REACT_APP_API}/api/v1/get-expenses?user_id=${user_id}`;
@@ -87,6 +93,8 @@ const GlobalContextProvider = ({ children }) => {
         }
         catch (error) {
             console.log(error);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -158,7 +166,8 @@ const GlobalContextProvider = ({ children }) => {
             totalExpense,
             totalBalance,
             transactionHistory,
-            setUser_Id
+            setUser_Id,
+            loading
         }}>
             {children}
         </GlobalContext.Provider>

@@ -30,7 +30,7 @@ const Login = () => {
                 setAuth({ ...auth, user: data.user, token: data.token });
                 setUser_Id(data.user._id);
                 localStorage.setItem('auth', JSON.stringify(data));
-                
+
                 const redirectPath = location.state || prevLocation || '/';
                 navigate(redirectPath);
             } else {
@@ -39,34 +39,43 @@ const Login = () => {
         } catch (error) {
             console.error(error);
             if (error.response && error.response.data && error.response.data.message) {
-            toast.error(error.response.data.message);
-            }else{
-            toast.error("Something went wrong", { position: "top-right", autoClose: 3000 });
+                toast.error(error.response.data.message);
+            } else {
+                toast.error("Something went wrong", { position: "top-right", autoClose: 3000 });
             }
         }
     };
 
     return (
         <Layout>
-            <form className="form-box" autoComplete="off"  onSubmit={handleOnSubmit}>
-                <div className="d-flex flex-column form-container">
-                    <h1 className="form-heading">Hello, Again!</h1>
-                    <h4 className="form-subheading">We are happy to have you back.</h4>
-                    <div className="mb-3">
-                        <input type="email" autoComplete="off"  ref={email} className="form-control input-field" id="exampleInputEmail1" placeholder="Enter your Email" aria-describedby="emailHelp" required />
-                    </div>
-                    <div className="mb-3">
-                        <input type="password" autoComplete="off"  ref={password} className="form-control input-field" id="exampleInputPassword1" placeholder="Enter Password" required />
-                    </div>
-                    <div className="mb-3 form-check">
-                        <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                        <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
-                    </div>
-                    <Link className="btn mb-3 submit-button" to='/forget'>Forget Password?</Link>
-                    <button type="submit" className="btn submit-button">Login</button>
+            <div className="register-wrapper">
+                <div className="register-container">
+                    <h2>Welcome Back</h2>
+                    <p className="auth-footer" style={{ marginTop: '-1rem', marginBottom: '1rem' }}>We are happy to have you back</p>
+
+                    <form className="register-form" autoComplete="off" onSubmit={handleOnSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="email">Email Address</label>
+                            <input type="email" ref={email} id="email" placeholder="Enter your Email" required />
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="password">Password</label>
+                            <input type="password" ref={password} id="password" placeholder="Enter Password" required />
+                        </div>
+
+                        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                            <Link to='/forget' className="auth-link" style={{ fontSize: '0.875rem' }}>Forgot Password?</Link>
+                        </div>
+
+                        <button type="submit" className="auth-btn">Login</button>
+
+                        <div className="auth-footer">
+                            Don't have an account? <Link to="/register" className="auth-link">Register</Link>
+                        </div>
+                    </form>
                 </div>
-            </form>
-            {/* <ToastContainer /> */}
+            </div>
         </Layout>
     );
 }

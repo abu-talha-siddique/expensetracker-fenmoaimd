@@ -1,11 +1,11 @@
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
-import { bitcoin, book, calender, card, circle, clothing, comment, dollar, food, freelance, medical, money, piggy, stocks, takeaway,tv, trash, trend, users, yt } from "../../utils/Icons";
+import { bitcoin, book, calender, card, circle, clothing, comment, dollar, food, freelance, medical, money, piggy, stocks, takeaway, tv, trash, trend, users, yt } from "../../utils/Icons";
 import './financeItem.css'
 
-const FinanceItems=({finances,deleteFinance})=>{
-    const incomeCategoryIcon=(category)=>{
-        switch(category){
+const FinanceItems = ({ finances, deleteFinance }) => {
+    const incomeCategoryIcon = (category) => {
+        switch (category) {
             case 'salary':
                 return money;
             case 'freelancing':
@@ -23,12 +23,12 @@ const FinanceItems=({finances,deleteFinance})=>{
             case 'other':
                 return piggy;
             default:
-                return '';                                 
+                return '';
         }
     }
 
-    const expenseCategoryIcon=(category)=>{
-        switch(category){
+    const expenseCategoryIcon = (category) => {
+        switch (category) {
             case 'education':
                 return book;
             case 'groceries':
@@ -46,29 +46,43 @@ const FinanceItems=({finances,deleteFinance})=>{
             case 'other':
                 return circle;
             default:
-                return '';                                 
+                return '';
         }
     }
-    return(
+    return (
         <div className="finance-item-content">
-             {finances.map((finance)=>(
-            <div key={finance._id} className="finance-inner-content">
+            {finances.map((finance) => (
+                <div key={finance._id} className="finance-inner-content">
                     <div className="category-icon">
-                        {finance.type==='Expense'?expenseCategoryIcon(finance.category):incomeCategoryIcon(finance.category)}
+                        {finance.type === 'Expense' ? expenseCategoryIcon(finance.category) : incomeCategoryIcon(finance.category)}
                     </div>
-                <div className="finance-detail">
-                    <p><span className="dot-before"></span> {finance.title}</p>
-                    <div className="finance-time">
-                        <p style={{color:'#151412',fontWeight:'bold'}}>{dollar} {finance.amount}</p>
-                        <p style={{color:'#151412'}}>{calender} {new Date(finance.date).toLocaleDateString('en-GB')}</p>
-                        <p style={{color:'#151412'}}>{comment} {finance.description}</p>
-                        <button className="delete-btn" onClick={()=>{deleteFinance(finance._id)}}>{trash}</button>
+                    <div className="finance-detail">
+                        <h5>
+                            <span style={{
+                                width: '8px',
+                                height: '8px',
+                                borderRadius: '50%',
+                                background: finance.type === 'Expense' ? 'var(--danger)' : 'var(--success)'
+                            }}></span>
+                            {finance.title}
+                        </h5>
+                        <div className="finance-time">
+                            <div className="finance-time-info">
+                                <p className="amount-text" style={{ color: finance.type === 'Expense' ? 'var(--danger)' : 'var(--success)' }}>
+                                    {dollar} {finance.amount}
+                                </p>
+                                <p>{calender} {new Date(finance.date).toLocaleDateString('en-GB')}</p>
+                                <p style={{ maxWidth: '300px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                    {comment} {finance.description}
+                                </p>
+                            </div>
+                            <button className="delete-btn" onClick={() => { deleteFinance(finance._id) }}>{trash}</button>
+                        </div>
                     </div>
-                </div> 
-            </div>
-             ))}
-             {/* <ToastContainer/> */}
+                </div>
+            ))}
         </div>
+    );
 
     );
 }

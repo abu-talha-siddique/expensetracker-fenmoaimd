@@ -1,56 +1,68 @@
-/* CSS for form */
 .form {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* CSS for input controls */
-  .input-control-form {
-    margin-bottom: 20px;
-  }
-  
-  .input-control-form input[type="text"],
-  .input-control-form input[type="number"],
-  .input-control-form input[type="date"],
-  .input-control-form textarea,
-  .input-control-form select {
-    width: 250px;
-    padding: 10px;
-    border: 3px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    outline: none;
-  }
-  
-  /* CSS for select dropdown */
-  .selects select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    padding-right: 30px; /* for arrow icon */
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-  }
-  
-  /* CSS for submit button */
-  .submit-btn {
-    background-color: #e96797;
-    height:3rem; 
-    color: #fff;
-    border: none;
-    font-size: 20px !important;
-    border-radius: 25px;
-    padding: 6px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .submit-btn:hover {
-    background-color:#0ac730;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+}
+
+.input-control-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-control-form input,
+.input-control-form select,
+.input-control-form textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.input-control-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submit-btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem !important;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 1rem;
+}
+
+.submit-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Category Breakdown in Expenses/Incomes */
+.category-breakdown {
+  margin-bottom: 2rem;
+}
+
+.category-breakdown div {
+  background: white !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-main) !important;
+  font-weight: 500 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02) !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 8px !important;
+}

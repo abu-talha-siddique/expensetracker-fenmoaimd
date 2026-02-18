@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate} from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { RiMoneyEuroBoxFill } from "react-icons/ri";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -7,59 +7,65 @@ import { toast, ToastContainer } from "react-toastify";
 import { GlobalContext } from "../../context/GlobalContext";
 
 
-const Header=()=>{
-    const {auth,setAuth,setPrevLocation}=useContext(AuthContext);
-    const {setIncomes,setExpenses,setUser_Id}=useContext(GlobalContext);
-    const navigate=useNavigate();
-    const location=useLocation();
+const Header = () => {
+  const { auth, setAuth, setPrevLocation } = useContext(AuthContext);
+  const { setIncomes, setExpenses, setUser_Id } = useContext(GlobalContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    const handleLogout=()=>{
-       setAuth({...auth,user:null,token:""});
-       if(location.pathname!=='/register'&&location.pathname!=='/login')
-       setPrevLocation(location.pathname);
-       localStorage.removeItem("auth");
-       setIncomes([]);
-       setExpenses([]);
-       setUser_Id("");
-       toast.success("LogOut Successfully"); 
-       navigate('/login'); 
-    }
-    return(
-      <nav className="navbar navbar-expand-lg bg-body-tertiary nav-header">
-        <div className="container-fluid">
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <Link className="navbar-brand header-brand-link" to="/"><span className="head-title-icon"><RiMoneyEuroBoxFill /></span>Expense Tracker App</Link>
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link className="nav-link header-link"  to="/">Home</Link>
-              </li>
-             
-              {!auth.user?
+  const handleLogout = () => {
+    setAuth({ ...auth, user: null, token: "" });
+    if (location.pathname !== '/register' && location.pathname !== '/login')
+      setPrevLocation(location.pathname);
+    localStorage.removeItem("auth");
+    setIncomes([]);
+    setExpenses([]);
+    setUser_Id("");
+    toast.success("LogOut Successfully");
+    navigate('/login');
+  }
+  return (
+    <nav className="navbar navbar-expand-lg glass sticky-top" style={{ padding: '0.75rem 2rem', borderBottom: '1px solid var(--border-color)', background: 'rgba(255, 255, 255, 0.8)' }}>
+      <div className="container-fluid">
+        <Link className="navbar-brand d-flex align-items-center" to="/" style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--primary-color)' }}>
+          <RiMoneyEuroBoxFill style={{ marginRight: '0.5rem', fontSize: '1.75rem' }} />
+          Expense Tracker
+        </Link>
+
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarMain">
+          <ul className="navbar-nav ms-auto align-items-center">
+            <li className="nav-item">
+              <Link className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} style={{ fontWeight: 500, padding: '0.5rem 1rem' }} to="/">Home</Link>
+            </li>
+
+            {!auth.user ? (
               <>
-              <li className="nav-item">
-                <Link className="nav-link header-link" to="/register">Register</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link header-link" to="/login">Login</Link>
-              </li>
-              </>:
+                <li className="nav-item">
+                  <Link className="nav-link" style={{ fontWeight: 500, padding: '0.5rem 1rem' }} to="/register">Register</Link>
+                </li>
+                <li className="nav-item ms-lg-2">
+                  <Link className="btn btn-primary" style={{ background: 'var(--primary-color)', border: 'none', borderRadius: '8px', padding: '0.5rem 1.5rem', fontWeight: 600 }} to="/login">Login</Link>
+                </li>
+              </>
+            ) : (
               <>
-              <li className="nav-item">
-                <Link className="nav-link header-link"  onClick={handleLogout}>LogOut</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link header-link" to="/finance/tracking">Financial-Tracking</Link>
-              </li>
-              </>}
-            </ul>
-          </div>
+                <li className="nav-item">
+                  <Link className={`nav-link ${location.pathname.includes('/finance') ? 'active' : ''}`} style={{ fontWeight: 500, padding: '0.5rem 1rem' }} to="/finance/tracking">Finance Dashboard</Link>
+                </li>
+                <li className="nav-item ms-lg-3">
+                  <button className="btn btn-outline-danger" style={{ borderRadius: '8px', padding: '0.5rem 1.25rem', fontWeight: 600 }} onClick={handleLogout}>LogOut</button>
+                </li>
+              </>
+            )}
+          </ul>
         </div>
-        {/* <ToastContainer/> */}
-      </nav>
-    );
+      </div>
+    </nav>
+  );
 }
 
 export default Header;

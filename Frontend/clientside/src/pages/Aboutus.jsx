@@ -1,56 +1,70 @@
 import Layout from "../components/Layout/Layout";
 
+const Aboutus = () => {
+  return (
+    <Layout>
+      <div className="about-wrapper" style={{ background: 'var(--bg-color)', padding: '4rem 2rem', minHeight: '100vh' }}>
+        <div className="container" style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          <div className="text-center" style={{ marginBottom: '4rem' }}>
+            <h1 style={{ fontSize: '3rem', fontWeight: 800, color: 'var(--text-main)', marginBottom: '1.5rem' }}>Empowering Your Financial Future</h1>
+            <p style={{ fontSize: '1.25rem', color: 'var(--text-muted)', maxWidth: '700px', margin: '0 auto' }}>
+              We build tools that help you understand your spending, save more, and live the life you want.
+            </p>
+          </div>
 
-const Aboutus=()=>{
-  localStorage.setItem('active',1);
-    return(
-        <Layout>
-          <div className="about-title"><h1 >About Us</h1></div>
-             <img className="bottom-img"  style={{minWidth:'100vw',minHeight:'100vh'}} src="https://moneyview.in/images/blog/wp-content/uploads/2017/10/Blog-11-reasonsfeature-min.jpg" alt="about-2-img" />
-    <div className="about-us-container">
-    {/* <img style={{width:'300px',height:'300px'}} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf0Z_C2HjVGOg9QWsibcYxCHNEBf9OWRnCgI0XXu-SPGCAYr8_mNAIDYzcXUxiXJN8I1Q&usqp=CAU" alt="about-1-img" /> */}
-    
-        <div className="about-content">
-        <div className="img-div">
-             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6DR1B9EcSyThAs0IjlUNOdZDzvIIMfTqmFtAcgg1wYmulrY41S0qSxcFLaROSVuoFXtk&usqp=CAU" alt="" />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+            <div className="glass" style={{ padding: '2.5rem', borderRadius: '24px', background: 'white' }}>
+              <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>🎯</div>
+              <h3 style={{ fontWeight: 700, marginBottom: '1rem' }}>Our Mission</h3>
+              <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>
+                To provide the most intuitive and powerful platform for personal finance management, making wealth building accessible to everyone.
+              </p>
+            </div>
+
+            <div className="glass" style={{ padding: '2.5rem', borderRadius: '24px', background: 'white' }}>
+              <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>🛡️</div>
+              <h3 style={{ fontWeight: 700, marginBottom: '1rem' }}>Privacy First</h3>
+              <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>
+                Your data is yours. We employ industry-leading security practices to ensure your financial information remains private and secure.
+              </p>
+            </div>
+
+            <div className="glass" style={{ padding: '2.5rem', borderRadius: '24px', background: 'white' }}>
+              <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>🚀</div>
+              <h3 style={{ fontWeight: 700, marginBottom: '1rem' }}>Continuous Innovation</h3>
+              <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>
+                We're constantly evolving, adding new features and insights to help you make better financial decisions every day.
+              </p>
+            </div>
           </div>
-          <div className="para-div">
-            <p>We are committed to helping you manage your finances effectively.
-            Our mission is to provide you with a user-friendly platform to track your expenses, 
-            set budgets, and achieve your financial goals.</p>
+
+          <div style={{ marginTop: '5rem', display: 'flex', alignItems: 'center', gap: '3rem', flexWrap: 'wrap' }}>
+            <div style={{ flex: 1, minWidth: '300px' }}>
+              <h2 style={{ fontSize: '2.25rem', fontWeight: 700, marginBottom: '1.5rem' }}>Why track with us?</h2>
+              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontWeight: 500 }}>
+                  <span style={{ color: 'var(--success)' }}>✓</span> Real-time expense monitoring
+                </li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontWeight: 500 }}>
+                  <span style={{ color: 'var(--success)' }}>✓</span> Intelligent category breakdown
+                </li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontWeight: 500 }}>
+                  <span style={{ color: 'var(--success)' }}>✓</span> Visualized spending trends
+                </li>
+              </ul>
+            </div>
+            <div style={{ flex: 1, minWidth: '300px' }}>
+              <img
+                src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                alt="Financial Planning"
+                style={{ width: '100%', borderRadius: '24px', boxShadow: 'var(--shadow)' }}
+              />
+            </div>
           </div>
-          
         </div>
-       <div className="about-content">
-       <div className="img-div">
-             <img  src="https://static.wixstatic.com/media/99fd11_6de9151ea9d545308d60e51ece599c6e~mv2.jpg/v1/fill/w_871,h_482,al_c,q_85,enc_auto/99fd11_6de9151ea9d545308d60e51ece599c6e~mv2.jpg
-               " alt="" />
-          </div> 
-          <div className="para-div">
-            <p>Create a Budget: Analyze your expenses and create a budget that allocates funds to
-               different categories such as housing, transportation, food, and entertainment.
-                Make sure your budget aligns with your income and financial goals.</p>
-          </div>
-          
-          </div>
-          <div className="about-content">
-            <div className="img-div">
-             <img  src="https://icma.org/sites/default/files/2022-03/AdobeStock_259292592.jpg" alt="" />
-          </div> 
-          <div className="para-div">
-            <p>Track Your Expenses: Start by tracking all your expenses.
-               This includes both fixed expenses like rent and utilities,
-               as well as variable expenses like groceries and entertainment.</p>
-          </div>
-          
-          </div>
-            
-
-           </div>
-       
-                
-       </Layout>
-    );
+      </div>
+    </Layout>
+  );
 }
 
 export default Aboutus;

@@ -5,18 +5,16 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
 
-const Layout=({children})=>{
-    return(
-  <div className="d-flex flex-column" style={{minHeight:"100vh"}}>
-      <Header/>
-        {/* <Orbs/> */}
-        {/* <ToastContainer/> */}
-        <div className="flex-grow-1">
-           {children}
-        </div>
-    <Footer className="mt-auto " />
-  </div>
-    );
+const Layout = ({ children }) => {
+  return (
+    <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
+      <Header />
+      <main className="flex-grow-1">
+        {children}
+      </main>
+      <Footer />
+    </div>
+  );
 }
 
 export default Layout;

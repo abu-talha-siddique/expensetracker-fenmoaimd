@@ -1,44 +1,58 @@
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: auto;
-    height: 100vh;
-    min-width:100vw;
-  }
-  
-  .box {
-    text-align: center;
-    padding: 40px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
- .box h1 {
-    font-size: 100px;
-    margin: 0;
-    color: #ff6347;
-  }
-  
- .box p {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #555;
-  }
-  
- .back-link {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color:  #00b34b;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .back-link:hover {
-    background-color: #3ab56d;
-  }
- 
+.error-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-color);
+  text-align: center;
+  padding: 2rem;
+}
+
+.error-container {
+  max-width: 500px;
+  background: white;
+  padding: 4rem 2rem;
+  border-radius: 32px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+}
+
+.error-code {
+  font-size: 8rem;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--primary-color), var(--indigo-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.error-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.error-message {
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.back-home-btn {
+  display: inline-block;
+  background: var(--primary-color);
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.back-home-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.2);
+}
