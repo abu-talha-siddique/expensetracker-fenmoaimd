@@ -84,7 +84,7 @@ const FinanceItems = ({ finances, deleteFinance }) => {
         </div>
     );
 
-    );
+
 }
 
 export default FinanceItems;
